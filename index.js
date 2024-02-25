@@ -10,9 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 const team_list = [];
 const characteristic = {
     Engineer:"GitHub",
@@ -45,7 +42,7 @@ inquirer.prompt([
     team_list.push(new Manager(ans.name, ans.id, ans.email, ans.office));
     addMember();
     
-})
+});
 
 function addMember(){
     inquirer.prompt([
@@ -64,6 +61,8 @@ function addMember(){
                 break;
             case `3`:
                 console.log("Finished team building");
+                const finalHTML = render(team_list);
+                fs.writeFile(outputPath,finalHTML,()=>{});
                 break;
         }
 
