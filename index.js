@@ -13,10 +13,94 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-inquirer.createPromptModule([
-    {type:"list",
-    name:"action",
-    message:"Select action:",
-    choices:["Add an engineer","Add an intern","Finish building the team"]
+const team_list = [];
+const characteristic = {
+    Engineer:"GitHub",
+    Manager:"Office Number",
+    Intern:"School",
+}
+
+inquirer.prompt([
+    {
+        type:"input",
+        name:"name",
+        message:"Enter manager name",
     },
-])
+    {
+        type:"input",
+        name:"id",
+        message:"Enter manager's ID",
+    },
+    {
+        type:"input",
+        name:"email",
+        message:"Enter manager's email",
+    },
+    {
+        type:"input",
+        name:"office",
+        message:"Enter manager's office number",
+    }
+]).then( (ans)=>{
+    team_list.push(new Manager(ans.name, ans.id, ans.email, ans.office));
+    addMember();
+    
+})
+
+function addMember(){
+    inquirer.prompt([
+        {   type:"list",
+            name:"action",
+            message:"Select action:",
+            choices:["1. Add an engineer","2. Add an intern","3. Finish building the team"]
+            },
+    ]).then( (choice)=>{
+        switch (choice.action[0]) {
+            case `1`:
+                memberPrompt("Engineer");
+                break;
+            case `2`:
+                memberPrompt("Intern");
+                break;
+            case `3`:
+                console.log("Finished team building");
+                break;
+        }
+
+    })
+}
+
+function memberPrompt(member){
+    inquirer.prompt([
+        {
+            type:"input",
+            name:"name",
+            message:`Enter ${member} name`,
+        },
+        {
+            type:"input",
+            name:"id",
+            message:`Enter ${member}'s ID`,
+        },
+        {
+            type:"input",
+            name:"email",
+            message:`Enter ${member}'s email`,
+        },
+        {
+            type:"input",
+            name:"extra",
+            message:`Enter ${member}'s ${characteristic[member]}`,
+        }
+    ]).then( (ans)=>{
+        team_list.push(new roleClasses[member](ans.name, ans.id, ans.email, ans.extra));
+        console.log(team_list);
+        addMember();
+        
+    })
+}
+
+const roleClasses = {
+    Engineer,
+    Intern
+}

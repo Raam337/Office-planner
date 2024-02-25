@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Raam337/Office-planner#readme",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "inquirer": "^6.5.0"
   }
 }
