@@ -13,3 +13,10 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+inquirer.createPromptModule([
+    {type:"list",
+    name:"action",
+    message:"Select action:",
+    choices:["Add an engineer","Add an intern","Finish building the team"]
+    },
+])

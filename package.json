@@ -1,0 +1,25 @@
+{
+  "name": "office-planner",
+  "version": "1.0.0",
+  "description": "Office planner",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Raam337/Office-planner.git"
+  },
+  "author": "RF",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Raam337/Office-planner/issues"
+  },
+  "homepage": "https://github.com/Raam337/Office-planner#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
